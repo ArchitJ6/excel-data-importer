@@ -2,13 +2,11 @@
 import React, { useState } from "react";
 import FileUploader from "../components/FileUploader";
 import ErrorModal, { SheetError } from "../components/ErrorModal";
-import { DataRow } from "../components/DataPreview";
 import axios from "axios";
 import { toast } from "react-toastify";
 
 const UploadPage: React.FC = () => {
   const [errors, setErrors] = useState<SheetError[]>([]);
-  const [data, setData] = useState<DataRow[]>([]);
   const [showErrors, setShowErrors] = useState<boolean>(false);
 
   const handleUploadSuccess = (data: {
@@ -35,7 +33,7 @@ const UploadPage: React.FC = () => {
   const processFile = async (fileId: string) => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/files/getTempFileData",
+        "http://localhost:3000/api/files/getTempFileData",
         {
           params: { fileId },
         }
@@ -45,14 +43,13 @@ const UploadPage: React.FC = () => {
         return;
       }
       const { sheets, rows } = response.data;
-      setData(rows);
       if (rows.length > 0) {
-        const errorRows = rows.filter((row) => row.valid === false);
+        const errorRows = rows.filter((row: any) => row.valid === false);
         if (errorRows.length > 0) {
           const sheetErrors: SheetError[] = [];
-          errorRows.forEach((row) => {
+          errorRows.forEach((row: any) => {
             const sheetIndex = sheets.findIndex(
-              (sheet) => sheet === row.sheetName
+              (sheet: string) => sheet === row.sheetName
             );
 
             const sheetError = sheetErrors.find(

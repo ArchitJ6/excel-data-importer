@@ -22,7 +22,7 @@ const PreviewSheetData = () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        "http://localhost:5000/api/files/fetchPaginatedData",
+        "http://localhost:3000/api/files/fetchPaginatedData",
         {
           params: {
             fileId: selectedFile,
@@ -75,7 +75,7 @@ const PreviewSheetData = () => {
         try {
           setLoading(true);
           const response = await axios.get(
-            "http://localhost:5000/api/files/getSheetNames",
+            "http://localhost:3000/api/files/getSheetNames",
             {
               params: { fileId: selectedFile },
             }
@@ -126,7 +126,7 @@ const PreviewSheetData = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:5000/api/files/deleteTempData",
+        "http://localhost:3000/api/files/deleteTempData",
         {
           fileId: selectedFile,
           recordId,
@@ -152,7 +152,7 @@ const PreviewSheetData = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:5000/api/files/importToDatabaseFinally",
+        "http://localhost:3000/api/files/importToDatabaseFinally",
         {
           fileId: selectedFile,
         }
@@ -188,7 +188,7 @@ const PreviewSheetData = () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        "http://localhost:5000/api/files/downloadValidatedFile",
+        "http://localhost:3000/api/files/downloadValidatedFile",
         {
           params: { fileId: selectedFile },
           responseType: "blob",

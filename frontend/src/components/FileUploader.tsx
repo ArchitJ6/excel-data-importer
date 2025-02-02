@@ -49,9 +49,9 @@ const FileUploader: React.FC<FileUploaderProps> = ({ onUploadSuccess }) => {
 
       try {
         setUploading(true);
-        // Change the URL as needed (assuming backend runs on port 5000)
+        // Change the URL as needed (assuming backend runs on port 3000)
         const response = await axios.post(
-          "http://localhost:5000/api/files/upload",
+          "http://localhost:3000/api/files/upload",
           formData,
           {
             headers: {
@@ -81,7 +81,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({ onUploadSuccess }) => {
   });
 
   useEffect(() => {
-    const socket = io("http://localhost:5000");
+    const socket = io("http://localhost:3000");
 
     socketRef.current = socket;
 

@@ -5,13 +5,15 @@ const fileRoutes = require("./routes/fileRoutes");
 const connectDB = require("./config/db");
 const http = require("http");
 const { Server } = require("socket.io");
+const path = require("path");
 
 const app = express();
 const server = http.createServer(app);
 
 // CORS configuration for both Express and Socket.IO
 const corsOptions = {
-  origin: "http://localhost:5173",
+  // origin: "http://localhost:5173",
+  origin: "*",
   methods: ["GET", "POST"],
   allowedHeaders: ["Content-Type", "socket-id"],
 };
@@ -38,8 +40,14 @@ app.use((req, res, next) => {
 // Routes
 app.use("/api/files", fileRoutes);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 server.listen(PORT, async () => {
   await connectDB();
   console.log(`✅ Server running on port ${PORT}`);
+});
+
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });

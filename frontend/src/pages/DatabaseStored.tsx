@@ -23,7 +23,7 @@ const DatabaseStored = () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        "http://localhost:5000/api/files/listFilesImportedToDatabase"
+        "http://localhost:3000/api/files/listFilesImportedToDatabase"
       );
       if (response.status !== 200) {
         toast.error("Error fetching files");
@@ -44,7 +44,7 @@ const DatabaseStored = () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        "http://localhost:5000/api/files/listSheetsImportedToDatabase",
+        "http://localhost:3000/api/files/listSheetsImportedToDatabase",
         {
           params: { fileId },
         }
@@ -68,7 +68,7 @@ const DatabaseStored = () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        "http://localhost:5000/api/files/fetchRecordsFromFileImportedToDatabase",
+        "http://localhost:3000/api/files/fetchRecordsFromFileImportedToDatabase",
         {
           params: {
             fileId: selectedFile,
@@ -125,7 +125,7 @@ const DatabaseStored = () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        "http://localhost:5000/api/files/downloadValidatedFileFromDatabase",
+        "http://localhost:3000/api/files/downloadValidatedFileFromDatabase",
         {
           params: { fileId: selectedFile },
           responseType: "blob",
@@ -155,7 +155,7 @@ const DatabaseStored = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:5000/api/files/deleteFileDataFromDatabase",
+        "http://localhost:3000/api/files/deleteFileDataFromDatabase",
         { fileId }
       );
       if (response.status !== 200) {
